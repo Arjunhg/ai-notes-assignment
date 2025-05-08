@@ -9,7 +9,6 @@ import Toast from '@/components/ui/Toast';
 const MainLayout: React.FC = () => {
   const { notes, activeNoteId, setActiveNote, createNote, theme } = useNoteStore();
 
-  // Check if there's at least one note, otherwise create a new note
   useEffect(() => {
     if (notes.length === 0) {
       createNote();
@@ -18,7 +17,6 @@ const MainLayout: React.FC = () => {
     }
   }, [notes.length, activeNoteId, createNote, setActiveNote]);
 
-  // Apply theme class to html element
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');

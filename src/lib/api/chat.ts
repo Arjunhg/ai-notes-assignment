@@ -1,8 +1,6 @@
 export const mockChatResponse = async (message: string): Promise<string> => {
-  // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  // Simple response logic based on message content
   const lowerMessage = message.toLowerCase();
 
   if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {

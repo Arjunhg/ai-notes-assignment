@@ -27,7 +27,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
 
   useEffect(() => {
     scrollToBottom();
-    // Focus the input when chat opens
     inputRef.current?.focus();
   }, []);
 
@@ -50,12 +49,12 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({
     }
   };
 
-  // Format timestamp safely
   const formatTimestamp = (timestamp: Date | string) => {
     try {
       const date = timestamp instanceof Date ? timestamp : new Date(timestamp);
       return date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     } catch (e) {
+      console.error('Error formatting timestamp:', e);
       return '';
     }
   };

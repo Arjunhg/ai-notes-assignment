@@ -7,7 +7,6 @@ import { useUIStore } from '@/lib/store/useUIStore';
 const Toast: React.FC = () => {
   const { toasts, removeToast } = useUIStore();
 
-  // Helper function to get the appropriate icon
   const getIcon = (type: string) => {
     switch (type) {
       case 'success':

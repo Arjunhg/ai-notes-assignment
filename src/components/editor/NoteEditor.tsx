@@ -46,11 +46,11 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ noteId }) => {
   const [isColorPickerOpen, setIsColorPickerOpen] = useState(false);
   const [newTag, setNewTag] = useState('');
 
-  // Configure TipTap editor with required extensions
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
-        heading: false, // Disable the default heading to use our custom configuration
+        heading: false, 
       }),
       Heading.configure({
         levels: [1, 2, 3],
@@ -74,7 +74,6 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ noteId }) => {
 
   useEffect(() => {
     if (editor && note) {
-      // Only update content if the note ID has changed to avoid cursor jumping
       if (editor.getHTML() !== note.content) {
         editor.commands.setContent(note.content || '');
       }
@@ -86,7 +85,6 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ noteId }) => {
   };
 
   const handleSendMessage = async (content: string) => {
-    // Add user message to chat history
     const userMessage = {
       id: crypto.randomUUID(),
       noteId,
@@ -97,10 +95,7 @@ const NoteEditor: React.FC<NoteEditorProps> = ({ noteId }) => {
     addChatMessage(noteId, userMessage);
 
     try {
-      // Get response from mock API
       const response = await mockChatResponse(content);
-      
-      // Add AI response to chat history
       const aiMessage = {
         id: crypto.randomUUID(),
         noteId,

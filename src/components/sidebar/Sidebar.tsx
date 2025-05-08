@@ -10,7 +10,6 @@ import {
   PlusIcon,
   TagIcon,
   MapPinIcon,
-  Bars3Icon,
   MagnifyingGlassIcon,
   TrashIcon,
   ChevronLeftIcon,
@@ -50,7 +49,7 @@ const Sidebar = () => {
     showToast('Note deleted!', 'info');
   };
 
-  // Sort notes - pinned first, then by updated date
+  // first sort by pinned status, then by updatedAt date
   const sortedNotes = [...notes].sort((a, b) => {
     if (a.isPinned && !b.isPinned) return -1;
     if (!a.isPinned && b.isPinned) return 1;
@@ -68,7 +67,6 @@ const Sidebar = () => {
 
   return (
     <div className={`h-screen ${theme === 'dark' ? 'bg-gray-800 text-gray-200' : 'bg-gray-50 text-gray-800'} border-r ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'} transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-16'} relative flex flex-col`}>
-      {/* Header with Toggle Button */}
       <div className="p-4 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
         {isSidebarOpen ? (
           <h1 className="text-xl font-bold">AI Notes</h1>
@@ -93,7 +91,6 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Main content area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Search */}
         {isSidebarOpen && (
@@ -191,7 +188,7 @@ const Sidebar = () => {
                         <MapPinIcon className={`w-4 h-4 flex-shrink-0 ${activeNoteId === note.id ? 'text-white' : 'text-blue-500'}`} />
                       )}
                     </div>
-                    {/* Delete button */}
+
                     <button 
                       onClick={(e) => handleDeleteNote(note.id, e)}
                       className={`absolute right-2 bottom-2 p-1 rounded-full ${
@@ -207,7 +204,7 @@ const Sidebar = () => {
                     </button>
                   </div>
                 ) : (
-                  // Compact view for collapsed sidebar
+                  // Grid view
                   <div className="flex flex-col items-center" title={note.title || 'Untitled Note'}>
                     <div 
                       className={`w-6 h-6 rounded-full flex items-center justify-center ${
@@ -225,7 +222,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      {/* Bottom Controls */}
+      {/* Footer */}
       <div className={`p-4 border-t ${theme === 'dark' ? 'border-gray-700' : 'border-gray-200'}`}>
         <div className={`flex ${isSidebarOpen ? 'justify-between' : 'justify-center'} items-center`}>
           <button
