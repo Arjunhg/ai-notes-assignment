@@ -32,6 +32,8 @@ interface NoteState {
   isChatOpen: boolean;
   searchQuery: string;
   selectedTags: string[];
+  hasHydrated: boolean;
+  setHasHydrated: (state: boolean) => void;
   createNote: () => void;
   updateNote: (id: string, updates: Partial<Note>) => void;
   deleteNote: (id: string) => void;
@@ -65,6 +67,12 @@ export const useNoteStore = create<NoteState>()(
       isChatOpen: false,
       searchQuery: '',
       selectedTags: [],
+      hasHydrated: false,
+      setHasHydrated: (state) => {
+        set({
+          hasHydrated: state
+        });
+      },
 
       createNote: () => {
         const newNote: Note = {
@@ -173,6 +181,11 @@ export const useNoteStore = create<NoteState>()(
     }),
     {
       name: 'note-storage',
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.setHasHydrated(true);
+        }
+      },
     }
   )
 );
