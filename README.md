@@ -27,7 +27,7 @@ A Notion-style note editor with AI chat integration, built with Next.js, TipTap,
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/ai-notes.git
+   git clone https://github.com/Arjunhg/ai-notes.git
    cd ai-notes
    ```
 
